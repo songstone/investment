@@ -43,18 +43,18 @@ class ApisTest {
                 .andExpect(jsonPath("$.data.length()", is(2)))
                 .andExpect(jsonPath("$.data[0].id", is(1)))
                 .andExpect(jsonPath("$.data[0].title", is("You can be elon musk")))
-                .andExpect(jsonPath("$.data[0].totalInvestAmount", is(100000000)))
+                .andExpect(jsonPath("$.data[0].totalInvestingAmount", is(100000000)))
                 .andExpect(jsonPath("$.data[0].investedCount", is(0)))
                 .andExpect(jsonPath("$.data[0].investedAmount", is(0)))
-                .andExpect(jsonPath("$.data[0].startedAt", is(LocalDate.now().minusDays(1L))))
-                .andExpect(jsonPath("$.data[0].finishedAt", is(LocalDate.now().plusDays(1L))))
-                .andExpect(jsonPath("$.data[1].id", is(1)))
+                .andExpect(jsonPath("$.data[0].startedAt", is(LocalDate.now().minusDays(1L).toString())))
+                .andExpect(jsonPath("$.data[0].finishedAt", is(LocalDate.now().plusDays(1L).toString())))
+                .andExpect(jsonPath("$.data[1].id", is(4)))
                 .andExpect(jsonPath("$.data[1].title", is("TOBE-RICH of Warren Buffett")))
-                .andExpect(jsonPath("$.data[1].totalInvestAmount", is(600000000)))
+                .andExpect(jsonPath("$.data[1].totalInvestingAmount", is(600000000)))
                 .andExpect(jsonPath("$.data[1].investedCount", is(0)))
                 .andExpect(jsonPath("$.data[1].investedAmount", is(0)))
-                .andExpect(jsonPath("$.data[1].startedAt", is(LocalDate.now().minusDays(2L))))
-                .andExpect(jsonPath("$.data[1].finishedAt", is(LocalDate.now().plusDays(2L))))
+                .andExpect(jsonPath("$.data[1].startedAt", is(LocalDate.now().minusDays(2L).toString())))
+                .andExpect(jsonPath("$.data[1].finishedAt", is(LocalDate.now().plusDays(2L).toString())))
         ;
     }
 
@@ -87,9 +87,9 @@ class ApisTest {
                 .andExpect(jsonPath("$.data[0].product").exists())
                 .andExpect(jsonPath("$.data[0].product.id", is(1)))
                 .andExpect(jsonPath("$.data[0].product.title", is("You can be elon musk")))
-                .andExpect(jsonPath("$.data[0].product.totalInvestAmount", is(100000000)))
+                .andExpect(jsonPath("$.data[0].product.totalInvestingAmount", is(100000000)))
                 .andExpect(jsonPath("$.data[0].investedAmount", is(10000)))
-                .andExpect(jsonPath("$.data[0].status", is("INVESTED")))
+                .andExpect(jsonPath("$.data[0].investmentStatus", is("INVESTING")))
                 .andExpect(jsonPath("$.data[0].investedAt").exists())
         ;
     }
@@ -107,7 +107,7 @@ class ApisTest {
 
         result.andDo(print())
                 .andExpect(status().is2xxSuccessful())
-                .andExpect(jsonPath("$.data.status", is("FAIL")))
+                .andExpect(jsonPath("$.data.investmentStatus", is("FAIL")))
         ;
 
         ResultActions after = mockMvc.perform(
@@ -123,9 +123,9 @@ class ApisTest {
                 .andExpect(jsonPath("$.data[0].product").exists())
                 .andExpect(jsonPath("$.data[0].product.id", is(1)))
                 .andExpect(jsonPath("$.data[0].product.title", is("You can be elon musk")))
-                .andExpect(jsonPath("$.data[0].product.totalInvestAmount", is(100000000)))
+                .andExpect(jsonPath("$.data[0].product.totalInvestingAmount", is(100000000)))
                 .andExpect(jsonPath("$.data[0].investedAmount", is(100000000000L)))
-                .andExpect(jsonPath("$.data[0].status", is("FAIL")))
+                .andExpect(jsonPath("$.data[0].investmentStatus", is("FAIL")))
                 .andExpect(jsonPath("$.data[0].investedAt").exists())
         ;
     }
@@ -158,9 +158,9 @@ class ApisTest {
                 .andExpect(jsonPath("$.data[0].product").exists())
                 .andExpect(jsonPath("$.data[0].product.id", is(1)))
                 .andExpect(jsonPath("$.data[0].product.title", is("You can be elon musk")))
-                .andExpect(jsonPath("$.data[0].product.totalInvestAmount", is(100000000)))
+                .andExpect(jsonPath("$.data[0].product.totalInvestingAmount", is(100000000)))
                 .andExpect(jsonPath("$.data[0].investedAmount", is(10000)))
-                .andExpect(jsonPath("$.data[0].status", is("CANCELED")))
+                .andExpect(jsonPath("$.data[0].investmentStatus", is("CANCELED")))
                 .andExpect(jsonPath("$.data[0].investedAt").exists())
         ;
     }
