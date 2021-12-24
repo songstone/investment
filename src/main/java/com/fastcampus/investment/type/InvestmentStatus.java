@@ -8,7 +8,7 @@ import lombok.Getter;
 public enum InvestmentStatus {
 
     INVESTING("투자중"),
-    CANCELED("취소")
-    ;
+    CANCELED("취소"),
+    FAIL("투자실패");
     private final String description;
 }
