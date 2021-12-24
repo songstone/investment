@@ -4,7 +4,7 @@ import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -34,8 +34,8 @@ public class Products {
     private Integer investedCount;
 
     @Column(name = "STARTED_AT")
-    private Timestamp startedAt;
+    private LocalDate startedAt;
 
     @Column(name = "FINISHED_AT")
-    private Timestamp finishedAt;
+    private LocalDate finishedAt;
 }
